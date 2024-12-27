@@ -1,0 +1,33 @@
+@import '../../common/variables';
+
+header {
+	padding: 0 160px 0 120px;
+	backdrop-filter: blur(12px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 98px;
+	.header-left-container {
+		display: flex;
+		column-gap: 150px;
+		align-items: center;
+		.logo {
+			background-color: #d9d9d9;
+			border-radius: 100%;
+			width: 86px;
+			height: 86px;
+		}
+		ul {
+			display: flex;
+			column-gap: 150px;
+			li {
+				font-family: $inter;
+				font-weight: $fw-medium;
+				list-style: none;
+				font-size: $fz-x-small;
+				color: $text-color;
+				cursor: pointer;
+			}
+		}
+	}
+}

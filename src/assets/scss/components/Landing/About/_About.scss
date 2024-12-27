@@ -1,0 +1,20 @@
+@import '../../../common/variables';
+
+.about-container {
+	padding: 70px 15px 240px 15px;
+	display: flex;
+	align-items: flex-start;
+	column-gap: 250px;
+	.about-items {
+		position: relative;
+		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		row-gap: 40px;
+		.about-items__separator {
+			width: 100%;
+			height: 2px;
+			background-color: $text-color-hover;
+		}
+	}
+}

@@ -1,0 +1,16 @@
+// Common
+@use 'assets/scss/common/base';
+
+// Components
+@use 'assets/scss/components/Landing/Header';
+@use 'assets/scss/components/Landing/Main';
+@use 'assets/scss/components/Landing/Functionality/Functionality';
+@use 'assets/scss/components/Landing/Functionality/FunctionalityCard';
+@use 'assets/scss/components/Landing/Audience/Audience';
+@use 'assets/scss/components/Landing/Audience/BenefitsItem';
+@use 'assets/scss/components/Landing/About/About';
+@use 'assets/scss/components/Landing/About/AboutItem';
+@use 'assets/scss/components/Landing/About/Slider';
+@use 'assets/scss/components/Landing/CTO';
+@use 'assets/scss/components/Landing/Footer';
+@use 'assets/scss/components/Landing/AuthForm';

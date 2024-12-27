@@ -1,0 +1,57 @@
+@import '../../scss/common/variables.scss';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: $ledger;
+	color: white;
+}
+
+body {
+	background-color: $bg-color3;
+}
+
+a {
+	text-decoration: none;
+	font-family: $inter;
+	transition: 0.3s ease color;
+	&:hover {
+		color: $header-color;
+	}
+}
+
+.title {
+	font-family: $ysabeauSC;
+	font-size: $fz-large;
+	color: $header-color;
+}
+
+.text {
+	font-family: $ledger;
+	font-size: $fz-medium;
+	font-weight: $fw-medium;
+	color: $text-color;
+}
+
+.button {
+	font-family: $ysabeauSC;
+	font-weight: $fw-semibold;
+	font-size: $fz-medium;
+	color: $header-color;
+	padding: 13px 60px;
+	border-radius: 10px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: 0.3s ease background-color, 0.3s ease box-shadow, 0.3s ease color;
+	&:hover {
+		background-color: black;
+		color: $text-color-hover;
+		box-shadow: 0 0 0 2px $text-color-hover;
+	}
+}
+
+.fas {
+	color: $header-color;
+	font-size: $fz-x-large;
+}
