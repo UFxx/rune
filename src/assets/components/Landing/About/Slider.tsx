@@ -5,12 +5,17 @@ interface Props {
 }
 
 export const Slider: FC<Props> = ({ sliderItems }) => {
+	const slideWidth: number = 850;
+
 	const [sliderOffset, setSliderOffset] = useState(0);
 	const [maxOffset, setMaxOffset] = useState(0);
 	const [sliderPointerIndex, setSliderPointerIndex] = useState(0);
 
+	// Mobile slider states
+	const [touchStart, setTouchStart] = useState(0);
+
 	useEffect(() => {
-		setMaxOffset(-(sliderItems.length - 1) * 850);
+		setMaxOffset(-(sliderItems.length - 1) * slideWidth);
 
 		if (sliderOffset > 0) {
 			setSliderOffset(20);
@@ -20,15 +25,31 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 			setTimeout(() => setSliderOffset(maxOffset), 200);
 		}
 
-		setSliderPointerIndex(sliderOffset === 0 ? 0 : -sliderOffset / 850);
+		setSliderPointerIndex(sliderOffset === 0 ? 0 : -sliderOffset / slideWidth);
 	}, [maxOffset, sliderOffset]);
 
 	function increaseOffset(): void {
-		setSliderOffset((prevValue) => prevValue + 850);
+		setSliderOffset((prevValue) => prevValue + slideWidth);
 	}
 
 	function decreaseOffset(): void {
-		setSliderOffset((prevValue) => prevValue - 850);
+		setSliderOffset((prevValue) => prevValue - slideWidth);
+	}
+
+	function handleTouchStart(e: React.TouchEvent): void {
+		setTouchStart(e.touches[0].clientX);
+	}
+
+	function handleTouchMove(e: React.TouchEvent): void {
+		let currentTouchPoint: number = e.touches[0].clientX;
+		setSliderOffset(
+			(prevValue) => prevValue + -(touchStart - currentTouchPoint) / 2
+		);
+	}
+
+	function handleTouchEnd(): void {
+		let slidesHaveBeenScrolled: number = Math.round(sliderPointerIndex);
+		setSliderOffset(slidesHaveBeenScrolled * -850);
 	}
 
 	return (
@@ -45,11 +66,11 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 						className="slider-items"
 						style={{
 							marginLeft: sliderOffset,
-							width: sliderItems.length * 850
+							width: sliderItems.length * slideWidth
 						}}
-						onMouseDown={(e) => {
-							console.log(e.clientX);
-						}}
+						onTouchStart={(e) => handleTouchStart(e)}
+						onTouchMove={(e) => handleTouchMove(e)}
+						onTouchEnd={handleTouchEnd}
 					>
 						{sliderItems.map((sliderItem, i) => {
 							return (
@@ -66,7 +87,7 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 									key={sliderItem}
 									onClick={() => {
 										setSliderPointerIndex(i);
-										setSliderOffset(i * -850);
+										setSliderOffset(i * -slideWidth);
 									}}
 									className={`slider-point ${
 										sliderPointerIndex === i ? 'slider-point__active' : null
