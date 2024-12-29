@@ -1,3 +1,11 @@
+import styled from 'styled-components';
+import {
+	textColor,
+	fontFamily,
+	fontSize,
+	fontWeight
+} from '../../../variables';
+
 import { FC } from 'react';
 import { IAuthReducerProps } from '../../../types';
 
@@ -21,31 +29,66 @@ export const Header: FC<IAuthReducerProps> = ({ dispatch }) => {
 
 	return (
 		<>
-			<header>
-				<div className="header-left-container">
-					<div className="logo"></div>
+			<HeaderContainer>
+				<HeaderLeftContainer>
+					<HeaderLogo></HeaderLogo>
 					<nav>
-						<ul>
-							<li onClick={(e) => scroll(e)}>
+						<HeaderMenu>
+							<HeaderMenuList onClick={(e) => scroll(e)}>
 								<a href="#">Функционал</a>
-							</li>
-							<li onClick={(e) => scroll(e)}>
+							</HeaderMenuList>
+							<HeaderMenuList onClick={(e) => scroll(e)}>
 								<a href="#">Для кого</a>
-							</li>
-							<li onClick={(e) => scroll(e)}>
+							</HeaderMenuList>
+							<HeaderMenuList onClick={(e) => scroll(e)}>
 								<a href="#">О проекте</a>
-							</li>
-						</ul>
+							</HeaderMenuList>
+						</HeaderMenu>
 					</nav>
-				</div>
+				</HeaderLeftContainer>
 				<button
-					id="header-login-button"
 					className="button"
 					onClick={() => dispatch({ type: 'openLogin' })}
 				>
 					Войти
 				</button>
-			</header>
+			</HeaderContainer>
 		</>
 	);
 };
+
+const HeaderContainer = styled.header`
+	padding: 0 160px 0 120px;
+	backdrop-filter: blur(12px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 98px;
+`;
+
+const HeaderLeftContainer = styled.div`
+	display: flex;
+	column-gap: 150px;
+	align-items: center;
+`;
+
+const HeaderLogo = styled.div`
+	background-color: #d9d9d9;
+	border-radius: 100%;
+	width: 86px;
+	height: 86px;
+`;
+
+const HeaderMenu = styled.ul`
+	display: flex;
+	column-gap: 150px;
+`;
+
+const HeaderMenuList = styled.li`
+	font-family: ${fontFamily.inter};
+	font-weight: ${fontWeight.medium};
+	list-style: none;
+	font-size: ${fontSize.xSmall};
+	color: ${textColor.text};
+	cursor: pointer;
+`;

@@ -1,33 +1,39 @@
+import { BG, Container, Form, Input, Button } from './Login';
+import { FormOptionsText } from './Registration';
+import styled from 'styled-components';
+
 import { FC } from 'react';
 import { IAuthReducerProps } from '../../../types';
+import { fontFamily, fontSize } from '../../../variables';
 
 export const ConfirmEmail: FC<IAuthReducerProps> = ({ dispatch }) => {
 	return (
 		<>
-			<div
-				className="form-bg"
-				onClick={() => dispatch({ type: 'closeForm' })}
-			></div>
-			<div className="form-container">
+			<BG onClick={() => dispatch({ type: 'closeForm' })}></BG>
+			<Container>
 				<p className="title">Подтвердите почту</p>
-				<p className="form-subtitle">
-					Код подтверждения отправлен вам на почту
-				</p>
-				<form>
-					<input
+				<Subtitle>Код подтверждения отправлен вам на почту</Subtitle>
+				<Form>
+					<Input
 						type="text"
 						placeholder="Введите код"
 						autoComplete="one-time-code"
 					/>
-					<p>
+					<FormOptionsText>
 						Есть аккаунт?
 						<span onClick={() => dispatch({ type: 'openLogin' })}>Войти</span>
-					</p>
-					<button type="button" className="button">
+					</FormOptionsText>
+					<Button type="button" className="button">
 						Зарегистрироваться
-					</button>
-				</form>
-			</div>
+					</Button>
+				</Form>
+			</Container>
 		</>
 	);
 };
+
+const Subtitle = styled.p`
+	color: white;
+	font-size: ${fontSize.xxSmall};
+	font-family: ${fontFamily.ysabeauSC};
+`;

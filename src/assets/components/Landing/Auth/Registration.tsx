@@ -1,43 +1,58 @@
+import { BG, Container, Form, Input, Button } from './Login';
+
+import styled from 'styled-components';
+
 import { FC } from 'react';
 import { IAuthReducerProps } from '../../../types';
+import { fontFamily, textColor } from '../../../variables';
 
 export const Registration: FC<IAuthReducerProps> = ({ dispatch }) => {
 	return (
 		<>
-			<div
-				className="form-bg"
-				onClick={() => dispatch({ type: 'closeForm' })}
-			></div>
-			<div className="form-container">
-				<p className="form-title title">Регистрация</p>
-				<form>
-					<input type="text" placeholder="Логин" autoComplete="username" />
-					<input
+			<BG onClick={() => dispatch({ type: 'closeForm' })}></BG>
+			<Container>
+				<p className="title">Регистрация</p>
+				<Form>
+					<Input type="text" placeholder="Логин" autoComplete="username" />
+					<Input
 						type="password"
 						autoComplete="new-password"
 						placeholder="Пароль"
 					/>
-					<input
+					<Input
 						type="password"
 						placeholder="Повторите пароль"
 						autoComplete="new-password"
 					/>
-					<input type="email" placeholder="Почта" />
-					<p>
+					<Input type="email" placeholder="Почта" />
+					<FormOptionsText>
 						Есть аккаунт?
 						<span onClick={() => dispatch({ type: 'openLogin' })}>Войти</span>
-					</p>
-					<p>
+					</FormOptionsText>
+					<FormOptionsText>
 						Подтвердить почту
 						<span onClick={() => dispatch({ type: 'openConfirmEmail' })}>
 							Временно
 						</span>
-					</p>
-					<button type="button" className="button">
+					</FormOptionsText>
+					<Button type="button" className="button">
 						Зарегистрироваться
-					</button>
-				</form>
-			</div>
+					</Button>
+				</Form>
+			</Container>
 		</>
 	);
 };
+
+export const FormOptionsText = styled.p`
+	font-family: ${fontFamily.ysabeauSC};
+	span {
+		margin-left: 10px;
+		color: ${textColor.header};
+		transition: 0.3s ease color;
+		cursor: pointer;
+		&:hover {
+			color: ${textColor.textHover};
+		}
+	}
+`;

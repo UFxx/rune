@@ -1,14 +1,15 @@
+import styled from 'styled-components';
+import { textColor, fontSize, fontWeight, bgColor } from '../../../variables';
+
 import { FC } from 'react';
 import { FunctionalityItem } from './FunctionalityItem';
 
 export const Functionality: FC = () => {
 	return (
 		<>
-			<div className="functionality-container">
-				<p className="functionality-title title">
-					Много возможностей - одна платформа
-				</p>
-				<div className="functionality-content">
+			<Container>
+				<Title className="title">Много возможностей - одна платформа</Title>
+				<Content>
 					<FunctionalityItem
 						iconClass="user-plus"
 						title="Создай и играй"
@@ -29,8 +30,29 @@ export const Functionality: FC = () => {
 						title="Стабильность"
 						text="Удобный интерфейс, живая администрация, постоянный актив."
 					/>
-				</div>
-			</div>
+				</Content>
+			</Container>
 		</>
 	);
 };
+
+const Container = styled.div`
+	padding: 50px 120px;
+	background-color: ${bgColor.bg2};
+	box-shadow: 0 35px 120px 120px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 -35px 120px 120px rgba(0, 0, 0, 0.25);
+	z-index: 3;
+`;
+
+const Title = styled.p`
+	font-size: ${fontSize.large};
+	color: ${textColor.header};
+	font-weight: ${fontWeight.semibold};
+	text-align: center;
+`;
+
+const Content = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+`;

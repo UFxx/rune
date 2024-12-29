@@ -82,8 +82,11 @@ export const Landing: FC = () => {
 			state.forgotPasswordOpened
 		) {
 			document.body.style.overflow = 'hidden';
+			// To prevent content from moving when scrollbar hidden
+			document.body.style.marginRight = '22px';
 		} else {
 			document.body.style.overflow = 'auto';
+			document.body.style.marginRight = '0';
 		}
 	}, [state]);
 
