@@ -33,6 +33,7 @@ export const Landing: FC = () => {
 	): IReducerState {
 		switch (action.type) {
 			case 'openLogin':
+				window.scrollTo({ top: 0, behavior: 'smooth' });
 				return {
 					loginOpened: true,
 					registrationOpened: false,
@@ -40,6 +41,7 @@ export const Landing: FC = () => {
 					confirmEmailOpened: false
 				};
 			case 'openRegistration':
+				window.scrollTo({ top: 0, behavior: 'smooth' });
 				return {
 					loginOpened: false,
 					registrationOpened: true,
@@ -47,6 +49,7 @@ export const Landing: FC = () => {
 					confirmEmailOpened: false
 				};
 			case 'openForgotPassword':
+				window.scrollTo({ top: 0, behavior: 'smooth' });
 				return {
 					loginOpened: false,
 					registrationOpened: false,

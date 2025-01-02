@@ -33,9 +33,9 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	.title {
-		font-family: ${fontFamily.ysabeauSC};
-		font-size: ${fontSize.large};
-		color: ${textColor.header};
+	font-family: ${fontFamily.ysabeauSC};
+	font-size: ${fontSize.large};
+	color: ${textColor.header};
 	}
 
 	.text {
@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${fontSize.medium};
 		font-weight: ${fontWeight.medium};
 		color: ${textColor.text};
-	}
+	};
 
 	.button {
 		font-family: ${fontFamily.ysabeauSC};
@@ -54,14 +54,13 @@ export const GlobalStyles = createGlobalStyle`
 		border-radius: 10px;
 		border: none;
 		background-color: rgba(0, 0, 0, 0.5);
-		transition: 0.3s ease background-color, 0.3s ease box-shadow,
-			0.3s ease color;
+		transition: 0.3s ease background-color, 0.3s ease box-shadow, 0.3s ease color;
 		&:hover {
 			background-color: black;
 			color: ${textColor.textHover};
 			box-shadow: 0 0 0 2px ${textColor.textHover};
 		}
-	}
+	};
 
 	.fas {
 		color: ${textColor.header};

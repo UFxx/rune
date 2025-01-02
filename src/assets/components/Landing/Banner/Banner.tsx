@@ -84,7 +84,6 @@ const InfoTitle = styled.p`
 
 const InfoText = styled.p`
 	width: 659px;
-	font-weight: ${fontWeight.medium};
 `;
 
 const Button = styled.button`

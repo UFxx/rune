@@ -14,6 +14,8 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 	const [maxOffset, setMaxOffset] = useState(0);
 	const [sliderPointerIndex, setSliderPointerIndex] = useState(0);
 
+	const [sliderMouseDown, setSliderMouseDown] = useState(false);
+
 	// Mobile slider state
 	const [touchStart, setTouchStart] = useState(0);
 	let swipeDistance: number;
@@ -58,6 +60,27 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 		}
 	}
 
+	// For slide on PC
+	function handleMouseDown(e: React.MouseEvent): void {
+		setSliderMouseDown(!sliderMouseDown);
+		setTouchStart(e.clientX);
+	}
+
+	function handleMouseMove(e: React.MouseEvent): void {
+		if (sliderMouseDown) {
+			swipeDistance = touchStart - e.clientX;
+		}
+	}
+
+	function handleMouseUp(): void {
+		setSliderMouseDown(!sliderMouseDown);
+		if (swipeDistance > 0) {
+			setSliderOffset((prevValue) => prevValue + -slideWidth);
+		} else if (swipeDistance < 0) {
+			setSliderOffset((prevValue) => prevValue + slideWidth);
+		}
+	}
+
 	return (
 		<>
 			<SliderContainer>
@@ -66,6 +89,9 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 					onTouchStart={(e) => handleTouchStart(e)}
 					onTouchMove={(e) => handleTouchMove(e)}
 					onTouchEnd={handleTouchEnd}
+					onMouseDown={(e) => handleMouseDown(e)}
+					onMouseMove={(e) => handleMouseMove(e)}
+					onMouseUp={() => handleMouseUp()}
 				>
 					<SliderItems
 						marginLeft={sliderOffset}
