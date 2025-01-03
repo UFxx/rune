@@ -37,7 +37,7 @@ export const CTO: FC<IAuthReducerProps> = ({ dispatch }) => {
 const Container = styled.div`
 	margin-top: 70px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	padding: 44px 240px;
 	background-color: ${bgColor.bg2};
 `;

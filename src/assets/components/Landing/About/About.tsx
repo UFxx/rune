@@ -1,8 +1,11 @@
 import { FC } from 'react';
 import { AboutItem } from './AboutItem';
-import { Slider } from './Slider';
+import { Slider } from './Slider/Slider';
 import styled from 'styled-components';
 import { textColor } from '../../../variables';
+
+import sliderImg1 from '../../../images/SliderMain/img1.webp';
+import sliderImg2 from '../../../images/SliderMain/img2.webp';
 
 export const About: FC = () => {
 	return (
@@ -24,7 +27,7 @@ export const About: FC = () => {
 						extended={true}
 					/>
 				</Items>
-				<Slider sliderItems={[1, 2, 3, 4, 5, 6, 7, 8]} />
+				<Slider sliderItems={[sliderImg1, sliderImg2]} />
 			</Container>
 		</>
 	);
@@ -34,6 +37,7 @@ const Container = styled.div`
 	padding: 70px 15px 240px 15px;
 	display: flex;
 	align-items: flex-start;
+	justify-content: space-evenly;
 	column-gap: 250px;
 `;
 

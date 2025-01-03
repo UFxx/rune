@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { bgColor, textColor } from '../../../variables';
+import { bgColor, textColor } from '../../../../variables';
 
 import { FC, useEffect, useState } from 'react';
+import { SliderItem } from './SliderItem';
 
 interface Props {
-	sliderItems: number[];
+	sliderItems: string[];
 }
 
 export const Slider: FC<Props> = ({ sliderItems }) => {
@@ -94,14 +95,16 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 					onMouseUp={() => handleMouseUp()}
 				>
 					<SliderItems
-						marginLeft={sliderOffset}
-						width={sliderItems.length * slideWidth}
+						$marginLeft={sliderOffset}
+						$width={sliderItems.length * slideWidth}
 					>
 						{sliderItems.map((sliderItem, i) => {
 							return (
-								<SliderItem key={i}>
-									<p>{sliderItem}</p>
-								</SliderItem>
+								<SliderItem
+									key={i}
+									imgPath={sliderItem}
+									slideWidth={slideWidth}
+								/>
 							);
 						})}
 					</SliderItems>
@@ -114,7 +117,7 @@ export const Slider: FC<Props> = ({ sliderItems }) => {
 										setSliderPointerIndex(i);
 										setSliderOffset(i * -slideWidth);
 									}}
-									isActive={sliderPointerIndex === i}
+									$isActive={sliderPointerIndex === i}
 								></SliderPoint>
 							);
 						})}
@@ -141,21 +144,12 @@ const SliderLine = styled.div`
 	overflow-x: hidden;
 `;
 
-const SliderItems = styled.div<{ marginLeft: number; width: number }>`
+const SliderItems = styled.div<{ $marginLeft: number; $width: number }>`
 	display: flex;
 	user-select: none;
-	margin-left: ${(props) => props.marginLeft}px;
-	width: ${(props) => props.width}px;
+	margin-left: ${(props) => props.$marginLeft}px;
+	width: ${(props) => props.$width}px;
 	transition: 0.3s ease margin-left;
-`;
-
-const SliderItem = styled.div`
-	width: 850px;
-	height: 396px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	user-select: none;
 `;
 
 const SliderPoints = styled.div`
@@ -167,14 +161,14 @@ const SliderPoints = styled.div`
 	transform: translateX(-50%);
 `;
 
-const SliderPoint = styled.div<{ isActive: boolean }>`
+const SliderPoint = styled.div<{ $isActive: boolean }>`
 	width: 10px;
 	height: 10px;
 	background-color: ${bgColor.bg3};
 	border-radius: 100%;
 	cursor: pointer;
 	box-shadow: ${(props) =>
-		props.isActive ? `0 0 0 2px ${textColor.textHover}` : null};
+		props.$isActive ? `0 0 0 2px ${textColor.textHover}` : null};
 	transition: 0.3s ease box-shadow;
 `;
 
